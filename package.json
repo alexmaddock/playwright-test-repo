@@ -1,0 +1,21 @@
+{
+  "name": "playwright-test-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexmaddock/playwright-test-repo.git"
+  },
+  "author": "alex maddock",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexmaddock/playwright-test-repo/issues"
+  },
+  "homepage": "https://github.com/alexmaddock/playwright-test-repo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.38.1",
+    "@types/node": "^20.7.1"
+  }
+}
