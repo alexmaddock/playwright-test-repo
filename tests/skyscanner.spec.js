@@ -1,6 +1,6 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
-const { beforeEach } = require('node:test');
+// const { beforeEach } = require('node:test');
 
 test.describe('Skyscanner', () => {
     test.beforeEach(async({ page }) => {
@@ -41,20 +41,31 @@ test.describe('Skyscanner', () => {
 
         const sydneyTextDropdown = page.getByText('Sydney (SYD)');
         await sydneyTextDropdown.click();
-        // await page.locator('//label[@id="originInput-menu"]').click();
         
         await page.locator('//input[@id="destinationInput-input"]').fill('Brisbane');
         const brisbaneTextDropdown = page.getByText('Brisbane (BNE)');
         await brisbaneTextDropdown.click();
 
+        await page.getByTestId('CustomCalendarContainer').getByRole('grid').nth(1).getByRole('button').first().click();
+        // await page.getByTestId('CustomCalendarContainer').getByRole('grid').nth(1).getByRole('button').last().click();
+        await page.getByTestId('CustomCalendarContainer').getByRole('grid').nth(1).getByRole('button').nth(-1).click();
+
+        await page.getByTestId('calendar').getByText('Select').click();
+        
+        const defaultTravellerLocator = page.getByTestId('traveller-button');
+        await expect(defaultTravellerLocator).toContainText('Travellers and cabin class');
+        await expect(defaultTravellerLocator).toContainText('1 Adult, Economy');
+
+        const travellerDropdown = page.getByTestId('desktop-travellerselector')
+        await travellerDropdown.getByText('Search').click();
+        
+      });
+
+      test.skip('Select direct flights only', async() => {
         // const inputCheckBoxArea = page.getByText(/direct flights/i);
         // inputCheckBoxArea.click();
         // await page.locator(':text("Direct flights") + input').click();
-
-        await page.getByTestId('CustomCalendarContainer').getByRole('grid').nth(1).getByText('1').click();
-        await page.getByTestId('CustomCalendarContainer').getByRole('grid').nth(1).getByText('28').click();
-        
-      });
+      })
       
 })
 
