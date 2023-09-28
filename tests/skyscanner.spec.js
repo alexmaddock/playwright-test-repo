@@ -37,14 +37,23 @@ test.describe('Skyscanner', () => {
       test('Select one way ticket entry', async ({ page }) => {
         await page.locator('//label[@id="originInput-label"]').click();
         await page.getByTestId('clear button').click();
-        await page.locator('//label[@id="originInput-label"]').click();
-        await page.locator('//label[@id="originInput-input"]').fill('Sydney (SYD');
+        await page.locator('//input[@id="originInput-input"]').fill('Sydney (SYD');
 
         const sydneyTextDropdown = page.getByText('Sydney (SYD)');
         await sydneyTextDropdown.click();
         // await page.locator('//label[@id="originInput-menu"]').click();
         
-        await page.locator('//label[@id="destinationInput-input"]').fill('Brisbane');
+        await page.locator('//input[@id="destinationInput-input"]').fill('Brisbane');
+        const brisbaneTextDropdown = page.getByText('Brisbane (BNE)');
+        await brisbaneTextDropdown.click();
+
+        // const inputCheckBoxArea = page.getByText(/direct flights/i);
+        // inputCheckBoxArea.click();
+        // await page.locator(':text("Direct flights") + input').click();
+
+        await page.getByTestId('CustomCalendarContainer').getByRole('grid').nth(1).getByText('1').click();
+        await page.getByTestId('CustomCalendarContainer').getByRole('grid').nth(1).getByText('28').click();
+        
       });
       
 })
